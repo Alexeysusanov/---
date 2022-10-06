@@ -20,4 +20,4 @@ driver.find_element("class name", "HUZACb").click()
 driver.find_element("class name", "HUZACb").send_keys("50000")
 driver.find_element("class name", "HUZACb").send_keys(Keys.ENTER)
 
-print('12345')
+print('123')
