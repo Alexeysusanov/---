@@ -1,0 +1,21 @@
+from selenium import webdriver
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
+
+
+options = webdriver.ChromeOptions()
+options.add_experimental_option("excludeSwitches", ["enable-logging"])
+driver = webdriver.Chrome(options=options, executable_path=r'E:\chromedriver\chromedriver.exe')
+
+
+driver.get('https://shopping.google.ru/?nord=1')
+
+driver.find_element("id", "REsRA").click()
+driver.find_element("id", "REsRA").send_keys("купить ноутбук")
+driver.find_element("id", "REsRA").send_keys(Keys.ENTER)
+
+driver.find_element("class name", "HUZACb").click()
+driver.find_element("class name", "HUZACb").send_keys("50000")
+driver.find_element("class name", "HUZACb").send_keys(Keys.ENTER)
