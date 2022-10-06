@@ -1,0 +1,39 @@
+import time
+
+import re
+
+from collections import Counter
+from unittest import main
+
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+
+options = webdriver.ChromeOptions()
+options.add_experimental_option("excludeSwitches", ["enable-logging"])
+driver = webdriver.Chrome(options=options, executable_path=r'E:\chromedriver\chromedriver.exe')
+driver.get("https://dzen.ru/")
+
+driver.find_element("class name", "dzen-top-controls-desktop__button-R4").click()
+
+driver.switch_to.window(driver.window_handles[0])
+
+driver.close()
+
+driver.switch_to.window(driver.window_handles[0])
+
+driver.find_element("class name", "zen-ui-search__input").click()
+driver.find_element("class name", "zen-ui-search__input").send_keys("кавказская пленница")
+driver.find_element("class name", "zen-ui-search__input").send_keys(Keys.ENTER)
+
+get_source = driver.page_source
+
+search_text = "кавказская пленница"
+
+print("Количество видео, в названии которых есть (кавказская пленница) равно:")
+print(len(re.findall("кавказская пленница", get_source)))
+
