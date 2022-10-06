@@ -1,0 +1,28 @@
+from selenium import webdriver
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
+
+
+options = webdriver.ChromeOptions()
+options.add_experimental_option("excludeSwitches", ["enable-logging"])
+driver = webdriver.Chrome(options=options, executable_path=r'E:\chromedriver\chromedriver.exe')
+
+
+
+
+
+driver.get('https://www.google.ru/')
+e = driver.find_element('xpath', '//input[@class="gLFyf gsfi"]')
+e.send_keys('погода')
+e.send_keys(Keys.ENTER)
+driver.find_element(By.XPATH, "/html/body/div[7]/div/div[11]/div/div[2]/div[2]/div/div/div[2]/div/div/div[1]/div/a/h3").click()
+
+tabs = driver.window_handles
+driver.switch_to.window(tabs[1])
+
+time.sleep(10)
+k = driver.find_element(By.XPATH, "/html/body/header/div/form/div/input")
+k.send_keys('Погода Москва')
+k.send_keys(Keys.ENTER)
